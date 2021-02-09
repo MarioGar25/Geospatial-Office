@@ -62,6 +62,13 @@ def get_points_schools(lst):
         return +0
 
 def get_location_from_foursquare_in_SanFrancisco(establishment):
+'''
+Takes a establishment and return a coordenates in San Francisco city
+
+    Input: Establishment
+    Return: list with all the establishment name and coordinates (long, lat), with limit 100
+'''
+    #Gets tokens and paramenters
     load_dotenv()
     url = "https://api.foursquare.com/v2/venues/explore"
     tok1 = os.getenv("token1")
@@ -72,14 +79,20 @@ def get_location_from_foursquare_in_SanFrancisco(establishment):
             "ll": "37.66881, -122.40443",
               "query":establishment,
               "limit": 100   }
+
+    #calls to the API
     response = requests.get(url=url, params = parameters).json()
     print("Calling the Api")
+    
+    #Browsers in the API to get the long, lat coordinates
     data_json = response.get("response")
 
     data_groups = data_json.get("groups")[0]
 
     data_items = data_groups.get("items")
     print("Getting the coordinates")
+    
+    #creates a list with name of the establishment and its coordinates
     final_list = []
     for dic in data_items:
         final_dic = {}
@@ -96,6 +109,14 @@ def get_location_from_foursquare_in_SanFrancisco(establishment):
     return final_list
 
 def get_location_from_foursquare_in_SanFrancisco_second_mod(establishment):
+    '''
+    Takes a establishment and return a coordenates in San Francisco city, with get_location_from_dic function
+
+    Input: Establishment
+    Return: list with all the establishment name and coordinates (long, lat), with limit 100
+    '''
+    
+    #Gets tokens and paramenters
     load_dotenv()
     url = "https://api.foursquare.com/v2/venues/explore"
     tok1 = os.getenv("token1")
@@ -106,17 +127,25 @@ def get_location_from_foursquare_in_SanFrancisco_second_mod(establishment):
             "ll": "37.66881, -122.40443",
               "query":establishment,
               "limit": 100   }
+
+    #calls to the API
     response = requests.get(url=url, params = parameters).json()
     print("Calling the Api")
+    
+    #Browsers in the API to get the long, lat coordinates
     data_json = response.get("response")
 
     data_groups = data_json.get("groups")[0]
 
     data_items = data_groups.get("items")
     print("Getting the coordinates")
+    
+    #gets path to coordinates and name
     data_name = ["venue", "name"]
     data_longitude = ["venue", "location", "lng"]
     data_latitude = ["venue", "location", "lat"]
+    
+    #creates a list with name of the establishment and its coordinates
     final_list = []
     for dic in data_items:
         final_dic = {}
