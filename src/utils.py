@@ -19,10 +19,10 @@ def extract_longitude(dic):
 
 
 def get_coordinates(dic):
-        '''extracts the coordinates from the geocode Api'''
-        return {
-            "type":"Point",
-            "coordinates":[float(dic["longt"]),float(dic["latt"])]}
+    '''extracts the coordinates from the geocode Api'''
+    return {
+        "type":"Point",
+        "coordinates":[float(dic["longt"]),float(dic["latt"])]}
 
 
 def get_location_from_dic(dic,x):
@@ -62,12 +62,12 @@ def get_points_schools(lst):
         return +0
 
 def get_location_from_foursquare_in_SanFrancisco(establishment):
-'''
-Takes a establishment and return a coordenates in San Francisco city
+    '''
+    Takes a establishment and return a coordenates in San Francisco city
 
     Input: Establishment
     Return: list with all the establishment name and coordinates (long, lat), with limit 100
-'''
+    '''
     #Gets tokens and paramenters
     load_dotenv()
     url = "https://api.foursquare.com/v2/venues/explore"
